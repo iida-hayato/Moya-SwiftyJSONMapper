@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BC2FFA41D86699100FEF3BA /* RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC2FFA31D86699100FEF3BA /* RxExtension.swift */; };
 		358C7D50F9BD1045787FAF1B /* Pods_Moya_SwiftyJSONMapper_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7DE60B502DDA22CABADD88 /* Pods_Moya_SwiftyJSONMapper_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BC2FFA31D86699100FEF3BA /* RxExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxExtension.swift; sourceTree = "<group>"; };
 		2B15663192B6B966D9518652 /* Pods-Moya-SwiftyJSONMapper_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moya-SwiftyJSONMapper_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moya-SwiftyJSONMapper_Tests/Pods-Moya-SwiftyJSONMapper_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Moya-SwiftyJSONMapper_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moya-SwiftyJSONMapper_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				73289B5A1C580B16002B25C9 /* Models */,
 				73289B5D1C58117B002B25C9 /* StubbedResponses */,
 				73289B561C57D5BC002B25C9 /* ExampleAPI.swift */,
+				0BC2FFA31D86699100FEF3BA /* RxExtension.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -395,6 +398,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				73289B571C57D5BC002B25C9 /* ExampleAPI.swift in Sources */,
 				73289B5C1C580B6A002B25C9 /* GetResponse.swift in Sources */,
+				0BC2FFA41D86699100FEF3BA /* RxExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

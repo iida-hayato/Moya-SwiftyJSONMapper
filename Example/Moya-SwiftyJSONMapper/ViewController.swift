@@ -9,28 +9,27 @@
 import UIKit
 import Moya
 import RxSwift
-import ReactiveCocoa
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         exampleRequestDirectMapping()
         coreObjectMapping()
         reactiveCocoaObjectMapping()
         rxSwiftObjectMapping()
     }
-    
-    func exampleRequestDirectMapping(){
+
+    func exampleRequestDirectMapping() {
         // This instead works, with type definition
-        let producer:SignalProducer<GetResponse, Moya.Error> = requestType(ExampleAPI.GetObject).on { (object) -> () in
-            print("Example origin \(object.origin)")
-        }
-        producer.start()
+//        let producer: SignalProducer<GetResponse, Moya.Error> = requestType(ExampleAPI.GetObject).on { (object) -> () in
+//            print("Example origin \(object.origin)")
+//        }
+//        producer.start()
     }
-    
-    func coreObjectMapping(){
+
+    func coreObjectMapping() {
         stubbedProvider.request(ExampleAPI.GetObject) { (result) -> () in
             switch result {
             case let .Success(response):
@@ -45,22 +44,24 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    func reactiveCocoaObjectMapping(){
+
+    func reactiveCocoaObjectMapping() {
         RCStubbedProvider.request(ExampleAPI.GetObject).mapObject(GetResponse).on(failed: { (error) -> () in
             print(error)
         }) { (response) -> () in
             print(response)
         }.start()
     }
-    
-    func rxSwiftObjectMapping(){
+
+    func rxSwiftObjectMapping() {
         let disposeBag = DisposeBag()
-        RXStubbedProvider.request(ExampleAPI.GetObject).mapObject(GetResponse).subscribe(onNext: { (response) -> Void in
-            print(response)
+//        RXStubbedProvider.request(ExampleAPI.GetObject).mapObject(GetResponse).subscribe(onNext: { (response) -> Void in
+RXStubbedProvider.request(ExampleAPI.GetObject).subscribe(onNext: { (response) -> Void in
+  print("rx")
+
+          print(response)
         }, onError: { (error) -> Void in
             print(error)
         }).addDisposableTo(disposeBag)
     }
 }
-
