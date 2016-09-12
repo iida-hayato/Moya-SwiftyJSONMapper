@@ -12,8 +12,13 @@ import RxSwift
 import Moya_SwiftyJSONMapper
 
 extension RxMoyaProvider {
-  func req<U: JSONMappableTargetType, T: ExampleAPI<U> where T.reqType == U>(token: T) -> Observable<U> {
-      return request(token).mapObject(token.responseType)
+  func req(token: Target) -> Observable<GetResponse> {
+      return self.request(token)
+        .mapObject(GetResponse)
   }
 
+}
+
+private func hoge() {
+  let x = RXStubbedProvider.req(GetObject())
 }

@@ -16,8 +16,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         exampleRequestDirectMapping()
-        coreObjectMapping()
-        reactiveCocoaObjectMapping()
+//        coreObjectMapping()
+//        reactiveCocoaObjectMapping()
         rxSwiftObjectMapping()
     }
 
@@ -29,34 +29,33 @@ class ViewController: UIViewController {
 //        producer.start()
     }
 
-    func coreObjectMapping() {
-        stubbedProvider.request(ExampleAPI.GetObject) { (result) -> () in
-            switch result {
-            case let .Success(response):
-                do {
-                    let getResponseObject = try response.mapObject(GetResponse)
-                    print(getResponseObject)
-                } catch {
-                    print(error)
-                }
-            case let .Failure(error):
-                print(error)
-            }
-        }
-    }
+//    func coreObjectMapping() {
+//        stubbedProvider.request(ExampleAPI.GetObject) { (result) -> () in
+//            switch result {
+//            case let .Success(response):
+//                do {
+//                    let getResponseObject = try response.mapObject(GetResponse)
+//                    print(getResponseObject)
+//                } catch {
+//                    print(error)
+//                }
+//            case let .Failure(error):
+//                print(error)
+//            }
+//        }
+//    }
 
-    func reactiveCocoaObjectMapping() {
-        RCStubbedProvider.request(ExampleAPI.GetObject).mapObject(GetResponse).on(failed: { (error) -> () in
-            print(error)
-        }) { (response) -> () in
-            print(response)
-        }.start()
-    }
+//    func reactiveCocoaObjectMapping() {
+//        RCStubbedProvider.request(ExampleAPI.GetObject).mapObject(GetResponse).on(failed: { (error) -> () in
+//            print(error)
+//        }) { (response) -> () in
+//            print(response)
+//        }.start()
+//    }
 
     func rxSwiftObjectMapping() {
         let disposeBag = DisposeBag()
-//        RXStubbedProvider.request(ExampleAPI.GetObject).mapObject(GetResponse).subscribe(onNext: { (response) -> Void in
-RXStubbedProvider.request(ExampleAPI.GetObject).subscribe(onNext: { (response) -> Void in
+        RXStubbedProvider.request(GetObject()).subscribe(onNext: { (response) -> Void in
   print("rx")
 
           print(response)

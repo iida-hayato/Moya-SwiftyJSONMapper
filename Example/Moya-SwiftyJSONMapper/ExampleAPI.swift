@@ -11,25 +11,25 @@ import Moya
 import Moya_SwiftyJSONMapper
 import SwiftyJSON
 
-let stubbedProvider =  MoyaProvider<ExampleAPI>(stubClosure: MoyaProvider.ImmediatelyStub)
-let RCStubbedProvider = ReactiveCocoaMoyaProvider<ExampleAPI>(stubClosure: MoyaProvider.ImmediatelyStub)
-let RXStubbedProvider = RxMoyaProvider<ExampleAPI>(stubClosure: MoyaProvider.ImmediatelyStub)
+//let stubbedProvider =  MoyaProvider<ExampleAPI>(stubClosure: MoyaProvider.ImmediatelyStub)
+//let RCStubbedProvider = ReactiveCocoaMoyaProvider<ExampleAPI>(stubClosure: MoyaProvider.ImmediatelyStub)
+let RXStubbedProvider = RxMoyaProvider<GetObject>(stubClosure: MoyaProvider.ImmediatelyStub)
 
-struct ExampleAPI<GetResponse:JSONMappableTargetType> {
+struct GetObject: GetObjectProtocol{
   typealias reqType = GetResponse
-//   static let  GetObject = ExampleEndpoint<GetResponse>()
-//    case GetArray
 }
 
-extension ExampleAPI: JSONMappableTargetType {
+protocol GetObjectProtocol: JSONMappableTargetType {
+  associatedtype reqType = GetResponse
+//   static let  GetObject = ExampleEndpoint<GetResponse>()
+//    case GetArray
+
+}
+
+extension GetObjectProtocol {
     var baseURL: NSURL { return NSURL(string: "https://httpbin.org")! }
     var path: String {
-        switch self {
-        case .GetObject:
             return "/get"
-        case .GetArray:
-            return "/getarray" // Does not really works, but will work for stubbed response
-        }
     }
     var method: Moya.Method {
         return .GET
@@ -38,20 +38,10 @@ extension ExampleAPI: JSONMappableTargetType {
         return nil
     }
     var sampleData: NSData {
-        switch self {
-        case .GetObject:
             return stubbedResponseFromJSONFile("object_response")
-        case .GetArray:
-            return stubbedResponseFromJSONFile("array_response")
-        }
     }
     var responseType: ALSwiftyJSONAble.Type {
-        switch self {
-        case .GetObject:
             return GetResponse.self
-        case .GetArray:
-            return GetResponse.self
-        }
     }
 
   var multipartBody: [MultipartFormData]? {
