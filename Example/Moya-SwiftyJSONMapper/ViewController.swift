@@ -55,7 +55,7 @@ class ViewController: UIViewController {
 
     func rxSwiftObjectMapping() {
         let disposeBag = DisposeBag()
-        RXStubbedProvider.request(GetObject()).subscribe(onNext: { (response) -> Void in
+        RXStubbedProvider.request(ExampleAPI.GetObject).subscribe(onNext: { (response) -> Void in
   print("rx")
 
           print(response)

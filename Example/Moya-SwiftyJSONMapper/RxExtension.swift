@@ -11,14 +11,28 @@ import Moya
 import RxSwift
 import Moya_SwiftyJSONMapper
 
-extension RxMoyaProvider {
-  func req(token: Target) -> Observable<GetResponse> {
-      return self.request(token)
-        .mapObject(GetResponse)
-  }
+extension TargetType {
+}
+protocol Target: TargetType {
+  associatedtype reqType = ExampleAPI
+  associatedtype resType = GetResponse
+}
 
+struct Hoge {
+}
+extension Hoge {
+  func req<T: Target where T.reqType == ExampleAPI, T.resType : ALSwiftyJSONAble>(token: T.reqType) -> Observable<T.resType> {
+    return RXStubbedProvider.request(token)
+    .flatMap { response -> Observable<T.resType> in
+      return Observable.just(try response.mapObject(T.resType.self))
+
+  }
 }
 
 private func hoge() {
-  let x = RXStubbedProvider.req(GetObject())
+
+  let x = Hoge().req(T)
+
+
+
 }
